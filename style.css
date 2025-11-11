@@ -100,16 +100,20 @@ body {
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   position: relative;
   z-index: 1;
 }
 
+/* 클릭 확대: 화면 중앙에 고정 */
 .gallery-grid img.expanded {
-  transform: scale(3); /* 클릭 시 3배 확대 */
-  z-index: 10;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(3);
+  z-index: 9999;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
 }
 
 /* 푸터 */
