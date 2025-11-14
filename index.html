@@ -23,50 +23,71 @@
 
   <!-- 연락 섹션 -->
   <section class="contact">
-    <p><a href="mailto:thegarden07@naver.com">e-mail_thegarden07@naver.com</a></p>
-    <p><a href="https://www.instagram.com/official.thegarden/" target="_blank">ig_official.thegarden</a></p>
+    <p><a href="mailto:thegarden07@naver.com">thegarden07@naver.com</a></p>
+    <p><a href="https://www.instagram.com/official.thegarden/" target="_blank">instagram: official.thegarden</a></p>
     <p class="note">프로젝트 문의는 메일로 부탁드립니다.</p>
   </section>
 
   <!-- 갤러리 섹션 -->
   <section class="gallery">
     <div class="gallery-grid">
-      <img src="tg_work_img/img1.jpg" alt="작업사진 1" />
-      <img src="tg_work_img/img2.jpg" alt="작업사진 2" />
-      <img src="tg_work_img/img3.jpg" alt="작업사진 3" />
-      <img src="tg_work_img/img4.jpg" alt="작업사진 4" />
-      <img src="tg_work_img/img5.jpg" alt="작업사진 5" />
-      <img src="tg_work_img/img6.jpg" alt="작업사진 6" />
-      <img src="tg_work_img/img7.jpg" alt="작업사진 7" />
-      <img src="tg_work_img/img8.jpg" alt="작업사진 8" />
-      <img src="tg_work_img/img9.jpg" alt="작업사진 9" />
-      <img src="tg_work_img/img10.jpg" alt="작업사진 10" />
-      <img src="tg_work_img/img11.jpg" alt="작업사진 11" />
-      <img src="tg_work_img/img12.jpg" alt="작업사진 12" />
-      <img src="tg_work_img/img13.jpg" alt="작업사진 13" />
-      <img src="tg_work_img/img14.jpg" alt="작업사진 14" />
-      <img src="tg_work_img/img15.jpg" alt="작업사진 15" />
+      <img src="tg_work_img/img1.jpg">
+      <img src="tg_work_img/img2.jpg">
+      <img src="tg_work_img/img3.jpg">
+      <img src="tg_work_img/img4.jpg">
+      <img src="tg_work_img/img5.jpg">
+      <img src="tg_work_img/img6.jpg">
+      <img src="tg_work_img/img7.jpg">
+      <img src="tg_work_img/img8.jpg">
+      <img src="tg_work_img/img9.jpg">
+      <img src="tg_work_img/img10.jpg">
+      <img src="tg_work_img/img11.jpg">
+      <img src="tg_work_img/img12.jpg">
+      <img src="tg_work_img/img13.jpg">
+      <img src="tg_work_img/img14.jpg">
+      <img src="tg_work_img/img15.jpg">
     </div>
   </section>
 
-  <!-- 하단 푸터 -->
+  <!-- 푸터 -->
   <footer>
     <p>© 2007 THE GARDEN | All Rights Reserved</p>
   </footer>
 
-  <!-- 클릭 확대 기능 JS -->
+  <!-- 이미지 확대 기능 + 저장 방지 스크립트 -->
   <script>
-    const galleryImgs = document.querySelectorAll('.gallery-grid img');
+    const imgs = document.querySelectorAll('.gallery-grid img');
+    let expandedImg = null;
 
-    galleryImgs.forEach(img => {
+    imgs.forEach(img => {
+      // 클릭 시 확대
       img.addEventListener('click', () => {
+        if (expandedImg && expandedImg !== img) {
+          expandedImg.classList.remove('expanded');
+        }
+
         img.classList.toggle('expanded');
+        expandedImg = img.classList.contains('expanded') ? img : null;
       });
 
-      // 오른쪽 클릭 방지
+      // 이미지 저장 방지 (오른쪽 클릭)
       img.addEventListener('contextmenu', e => e.preventDefault());
+
+      // 모바일 길게 누르기 방지
+      img.addEventListener('touchstart', e => {
+        e.preventDefault();  // 이미지 저장 메뉴 등장 방지
+      }, { passive: false });
+
+      // 드래그 방지
+      img.addEventListener('dragstart', e => e.preventDefault());
     });
+
+    // 전체 문서에서 길게 누르기 방지
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('touchstart', e => {
+      if (e.target.tagName === 'IMG') e.preventDefault();
+    }, { passive: false });
   </script>
+
 </body>
 </html>
-
