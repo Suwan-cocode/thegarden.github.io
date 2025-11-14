@@ -33,7 +33,7 @@ body {
   margin: 0;
 }
 
-.the { font-weight: 200; }
+.the { font-weight: 50; }
 .garden { font-weight: 600; }
 
 .main-header .intro {
@@ -121,3 +121,4 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
