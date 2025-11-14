@@ -13,8 +13,7 @@ body {
   background-image: url('tg_work_img/bg.jpg');
   background-size: cover;
   background-position: center;
-  color: rgb(80, 80, 80);
-  padding: 120px 20px 120px;
+  padding: 120px 20px;
 }
 
 .main-header .overlay {
@@ -32,24 +31,15 @@ body {
   z-index: 1;
   font-size: 3rem;
   margin: 0;
-  letter-spacing: 3px;
 }
 
-.main-header .the {
-  font-weight: 200;
-}
-
-.main-header .garden {
-  font-weight: 600;
-}
+.the { font-weight: 200; }
+.garden { font-weight: 600; }
 
 .main-header .intro {
-  position: relative;
-  z-index: 1;
   margin-top: 100px;
   font-size: 0.9rem;
   line-height: 1.8;
-  color: #797979;
 }
 
 /* 연락 섹션 */
@@ -58,32 +48,24 @@ body {
   margin-top: 50px;
   margin-bottom: 70px;
   font-size: 0.8rem;
-  color: #7c7c7c;
-}
-
-.contact p {
-  margin: 6px 0;
 }
 
 .contact a {
   color: #7c7c7c;
   text-decoration: none;
 }
-
 .contact a:hover {
   text-decoration: underline;
 }
 
-.contact .note {
+.note {
   margin-top: 10px;
   font-size: 0.7rem;
-  color: #979797;
 }
 
-/* 갤러리 섹션 */
+/* 갤러리 */
 .gallery {
   padding: 60px 8%;
-  text-align: center;
 }
 
 .gallery-grid {
@@ -99,44 +81,38 @@ body {
   height: 160px;
   object-fit: cover;
   border-radius: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  position: relative;
-  z-index: 1;
+
+  /* 이미지 저장 방지 */
+  pointer-events: auto;
+  -webkit-touch-callout: none; /* iOS 저장 메뉴 방지 */
+  user-select: none;
 }
 
-/* 클릭 확대: 화면 중앙에 고정 */
+/* 클릭 확대된 이미지 */
 .gallery-grid img.expanded {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(3);
-  z-index: 9999;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  width: 80vw;
+  height: auto;
+  max-height: 80vh;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  border-radius: 15px;
 }
 
-/* 푸터 */
-footer {
-  background-color: #f5f5f5;
-  text-align: center;
-  padding: 25px 0;
-  font-size: 0.7rem;
-  color: #727272;
+/* 배경 스크롤 방지 */
+.gallery-grid img.expanded ~ * {
+  pointer-events: none;
 }
 
-/* 반응형 스타일 */
+/* 반응형 */
 @media (max-width: 1024px) {
   .gallery-grid {
     grid-template-columns: repeat(3, 1fr);
-  }
-
-  .main-header h1 {
-    font-size: 2.5rem;
-  }
-
-  .main-header .intro {
-    font-size: 1rem;
   }
 }
 
@@ -144,22 +120,4 @@ footer {
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .main-header {
-    padding: 80px 10px;
-  }
-
-  .main-header h1 {
-    font-size: 1.8rem;
-  }
-
-  .main-header .intro {
-    font-size: 0.9rem;
-  }
-
-  .contact {
-    font-size: 0.9rem;
-    margin: 40px 0 60px;
-  }
 }
-
